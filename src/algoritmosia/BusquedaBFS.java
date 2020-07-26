@@ -1,3 +1,5 @@
+package algoritmosia;
+
 
 import algoritmosia.Estado;
 import algoritmosia.NodoDeBusqueda;
@@ -10,7 +12,7 @@ import java.util.Stack;
  * Define una búsqueda BFS.
  */
 public class BusquedaBFS {
-
+    
     /**
      * Función de inicialización para el problema de los canibales.
      *
@@ -19,8 +21,8 @@ public class BusquedaBFS {
      * izquierda, 0 si el bote esta a la izquierda o 1 si esta a derecha.
      * @param d true para mostrar nodos examinados
      */
-    public static void buscar(int[] ubicaciones, boolean d) {
-        NodoDeBusqueda raiz = new NodoDeBusqueda(new EstadoMisioneroCanibal(ubicaciones));
+    public static void buscar(boolean d, Estado estadoChange) {
+        NodoDeBusqueda raiz = new NodoDeBusqueda(estadoChange);
         Queue<NodoDeBusqueda> cola = new LinkedList<NodoDeBusqueda>();
 
         cola.add(raiz);

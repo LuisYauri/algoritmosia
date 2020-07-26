@@ -1,12 +1,11 @@
-import algoritmosia.Estado;
-import algoritmosia.NodoDeBusqueda;
+package algoritmosia;
 import java.util.ArrayList;
 import java.util.Stack;
 
 /**
- * Define una busqueda DFS Limitada con Profundidad 3.
+ * Define una busqueda DFS.
  */
-public class BusquedaDFSLimitada
+public class BusquedaDFS
 {
     /**
      * Funcion de inicialización
@@ -14,11 +13,11 @@ public class BusquedaDFSLimitada
      * @param ubicaciones
      *            - El estado inicial.
      */
-    public static void buscar(int[] ubicaciones, boolean d)
+    public static void buscar(boolean d,  Estado estadoChange)
     {
-        NodoDeBusqueda raiz = new NodoDeBusqueda(new EstadoMisioneroCanibal(ubicaciones));
+        NodoDeBusqueda raiz = new NodoDeBusqueda(estadoChange);
         Stack<NodoDeBusqueda> pila = new Stack<NodoDeBusqueda>();
-
+        //primero se añade la raíz 
         pila.add(raiz);
 
         realizarBusqueda(pila, d);
@@ -28,22 +27,20 @@ public class BusquedaDFSLimitada
      * Método de ayuda para revisar si un NodoDeBusqueda ya fue evaluado.
      * Returns true si ya fue evaluado, false en caso contrario.
      */
-    private static boolean revisarRepetidosYProfundidad(NodoDeBusqueda nodo)
+    private static boolean revisarRepetidos(NodoDeBusqueda n)
     {
         boolean resultado = false;
-        NodoDeBusqueda nodoRevisado = nodo;
-        int profundidad = 0;
+        NodoDeBusqueda nodoRevisado = n;
+
         // Mientras el padre de n no sea nulo, revisar si es igual al nodo
         // que estamos buscando.
-        while (nodo.getPadre() != null && !resultado)
+        while (n.getPadre() != null && !resultado)
         {
-            profundidad++;
-            if (nodo.getPadre().getEstadoActual().igual(nodoRevisado.getEstadoActual())){
+            if (n.getPadre().getEstadoActual().igual(nodoRevisado.getEstadoActual()))
+            {
                 resultado = true;
             }
-            if (profundidad > 3)
-                resultado = true;            
-            nodo = nodo.getPadre();
+            n = n.getPadre();
         }
 
         return resultado;
@@ -58,9 +55,19 @@ public class BusquedaDFSLimitada
 
         while (!pila.isEmpty()) // mientras la pila no este vacía
         {
-            System.out.print("Sale de la pila: ");
+            
             NodoDeBusqueda nodoTemp = (NodoDeBusqueda) pila.pop();
-            nodoTemp.getEstadoActual().mostrarEstado();            
+            //#Mostrar Nodo Padre          
+            if (nodoTemp.getPadre() != null) {
+                System.out.print("Nodo Padre: ");
+                nodoTemp.getPadre().getEstadoActual().mostrarEstado();
+            } else {
+                System.out.println("Es nodo raíz");
+            }
+            
+            System.out.print("Sale de la pila: ");
+            nodoTemp.getEstadoActual().mostrarEstado();
+            System.out.println();
             // si el nodoTemp no es el estado meta
             if (!nodoTemp.getEstadoActual().esMeta())
             {
@@ -81,7 +88,7 @@ public class BusquedaDFSLimitada
                         sucesoresTemp.get(i), nodoTemp.getCosto()
                             + sucesoresTemp.get(i).determinarCosto(), 0);
 
-                    if (!revisarRepetidosYProfundidad(nuevoNodo))
+                    if (!revisarRepetidos(nuevoNodo))
                     {
                             pila.add(nuevoNodo);
                     }
@@ -129,4 +136,3 @@ public class BusquedaDFSLimitada
         System.out.println("Error! Solución no encontrada!");
     }
 }
-

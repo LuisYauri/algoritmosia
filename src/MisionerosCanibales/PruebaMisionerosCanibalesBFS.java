@@ -1,3 +1,7 @@
+package MisionerosCanibales;
+import algoritmosia.BusquedaBFS;
+import algoritmosia.Estado;
+
 public class PruebaMisionerosCanibalesBFS {
     public static void main(String[] args) {
                 int[] a = { 3,3,1};
@@ -5,6 +9,7 @@ public class PruebaMisionerosCanibalesBFS {
                 //int[] a = { 2,4,3,1};
                 
                 //USa BFS para ver cómo se generan los estados
- 		BusquedaBFS.buscar(a, true);
+                System.out.println("\tMISIONERO | CANIBAL | BOTE");
+ 		BusquedaBFS.buscar(true, new EstadoMisioneroCanibal(a));
     }    
 }

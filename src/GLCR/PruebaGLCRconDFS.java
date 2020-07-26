@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmosia;
+package GLCR;
+
+import algoritmosia.BusquedaDFS;
 
 /**
  *
  * @author Luis
  */
-public class AlgoritmosIA {
-
-    /**
-     * @param args the command line arguments
-     */
+public class PruebaGLCRconDFS {
     public static void main(String[] args) {
-        // TODO code application logic here
+        System.out.println("\t( GRANJERO , LOBO , CABRA , REPOLLO )");
+        BusquedaDFS.buscar(true, new Estado_GLCR());
     }
-    
 }
+

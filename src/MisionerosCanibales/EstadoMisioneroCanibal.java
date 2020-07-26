@@ -1,4 +1,4 @@
-
+package MisionerosCanibales;
 import algoritmosia.Estado;
 import java.util.Arrays;
 import java.util.ArrayList;
