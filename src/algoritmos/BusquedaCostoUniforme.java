@@ -69,10 +69,19 @@ public class BusquedaCostoUniforme
 
         while (!cola.estaVacia()) // mientras la cola no este vacía
         {
-            System.out.print("Sale de Cola:");
+            
             NodoDeBusqueda nodoTemp = (NodoDeBusqueda) cola.eliminarAlInicio();
-            System.out.print("( costo = " + nodoTemp.getCosto()+")  " ); 
+            
+            if (nodoTemp.getPadre() != null) {
+                System.out.print("Nodo Padre: ");
+                nodoTemp.getPadre().getEstadoActual().mostrarEstado();
+            } else {
+                System.out.println("Es nodo raíz");
+            }
+            System.out.print("\t ( costo = " + nodoTemp.getCosto()+")  " + " Sale de Cola: ");
             nodoTemp.getEstadoActual().mostrarEstado();
+            System.out.println();
+            
             
             if (!nodoTemp.getEstadoActual().esMeta()) // si nodoTemp no es una meta
             {
