@@ -1,11 +1,13 @@
-package algoritmosia;
+package algoritmos;
+import utils.NodoDeBusqueda;
+import utils.Estado;
 import java.util.ArrayList;
 import java.util.Stack;
 
 /**
- * Define una busqueda DFS.
+ * Define una busqueda DFS Limitada con Profundidad 3.
  */
-public class BusquedaDFS
+public class BusquedaDFSLimitada
 {
     /**
      * Funcion de inicialización
@@ -13,11 +15,11 @@ public class BusquedaDFS
      * @param ubicaciones
      *            - El estado inicial.
      */
-    public static void buscar(boolean d,  Estado e)
+    public static void buscar(boolean d, Estado e)
     {
         NodoDeBusqueda raiz = new NodoDeBusqueda(e);
         Stack<NodoDeBusqueda> pila = new Stack<NodoDeBusqueda>();
-        //primero se añade la raíz 
+
         pila.add(raiz);
 
         realizarBusqueda(pila, d);
@@ -27,20 +29,22 @@ public class BusquedaDFS
      * Método de ayuda para revisar si un NodoDeBusqueda ya fue evaluado.
      * Returns true si ya fue evaluado, false en caso contrario.
      */
-    private static boolean revisarRepetidos(NodoDeBusqueda n)
+    private static boolean revisarRepetidosYProfundidad(NodoDeBusqueda nodo)
     {
         boolean resultado = false;
-        NodoDeBusqueda nodoRevisado = n;
-
+        NodoDeBusqueda nodoRevisado = nodo;
+        int profundidad = 0;
         // Mientras el padre de n no sea nulo, revisar si es igual al nodo
         // que estamos buscando.
-        while (n.getPadre() != null && !resultado)
+        while (nodo.getPadre() != null && !resultado)
         {
-            if (n.getPadre().getEstadoActual().igual(nodoRevisado.getEstadoActual()))
-            {
+            profundidad++;
+            if (nodo.getPadre().getEstadoActual().igual(nodoRevisado.getEstadoActual())){
                 resultado = true;
             }
-            n = n.getPadre();
+            if (profundidad > 3)
+                resultado = true;            
+            nodo = nodo.getPadre();
         }
 
         return resultado;
@@ -55,19 +59,9 @@ public class BusquedaDFS
 
         while (!pila.isEmpty()) // mientras la pila no este vacía
         {
-            
+            System.out.print("Sale de la pila: ");
             NodoDeBusqueda nodoTemp = (NodoDeBusqueda) pila.pop();
-            //#Mostrar Nodo Padre          
-            if (nodoTemp.getPadre() != null) {
-                System.out.print("Nodo Padre: ");
-                nodoTemp.getPadre().getEstadoActual().mostrarEstado();
-            } else {
-                System.out.println("Es nodo raíz");
-            }
-            
-            System.out.print("\tSale de la pila: ");
-            nodoTemp.getEstadoActual().mostrarEstado();
-            System.out.println();
+            nodoTemp.getEstadoActual().mostrarEstado();            
             // si el nodoTemp no es el estado meta
             if (!nodoTemp.getEstadoActual().esMeta())
             {
@@ -88,7 +82,7 @@ public class BusquedaDFS
                         sucesoresTemp.get(i), nodoTemp.getCosto()
                             + sucesoresTemp.get(i).determinarCosto(), 0);
 
-                    if (!revisarRepetidos(nuevoNodo))
+                    if (!revisarRepetidosYProfundidad(nuevoNodo))
                     {
                             pila.add(nuevoNodo);
                     }
@@ -136,3 +130,4 @@ public class BusquedaDFS
         System.out.println("Error! Solución no encontrada!");
     }
 }
+

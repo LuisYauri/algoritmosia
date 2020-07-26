@@ -1,6 +1,6 @@
 package MisionerosCanibales;
 
-import algoritmosia.BusquedaDFS;
+import algoritmos.BusquedaDFS;
 
 
 public class PruebaMisionerosCanibalesDFS {

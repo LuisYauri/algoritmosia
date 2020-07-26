@@ -1,5 +1,5 @@
 package MisionerosCanibales;
-import algoritmosia.Estado;
+import utils.Estado;
 import java.util.Arrays;
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ public class EstadoMisioneroCanibal implements Estado {
 		}
 		return resultado;
 	}
-
+    
 	@Override
 	public ArrayList<Estado> generarSucesores()
 	{
@@ -215,4 +215,32 @@ public class EstadoMisioneroCanibal implements Estado {
             
             return costoCambio;
         }    
+
+        @Override
+        public double costoCambioEstado(Estado e) {
+            EstadoMisioneroCanibal otro = (EstadoMisioneroCanibal)e;
+            int tam = this.getPosicionActual().length;
+            int dif,movidos=0;
+            double costoCambio=0.0;
+            for(int i = 0; i < tam-1; i++){
+                dif = this.getPosicionActual()[i] - otro.getPosicionActual()[i];
+                if(dif<0)
+                    movidos = movidos + (-1)*dif;
+                else
+                    movidos = movidos + dif;
+            }
+            if (movidos == 2)
+                costoCambio = 1.0;
+            else if (movidos == 1)
+                costoCambio = 2.0;
+            else
+                costoCambio = 0.0;
+            
+            return costoCambio;
+        }
+
+    @Override
+    public void formatearEstado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

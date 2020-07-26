@@ -1,6 +1,6 @@
 package MisionerosCanibales;
-import algoritmosia.BusquedaBFS;
-import algoritmosia.Estado;
+import algoritmos.BusquedaBFS;
+import utils.Estado;
 
 public class PruebaMisionerosCanibalesBFS {
     public static void main(String[] args) {

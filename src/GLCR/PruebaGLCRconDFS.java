@@ -5,7 +5,7 @@
  */
 package GLCR;
 
-import algoritmosia.BusquedaDFS;
+import algoritmos.BusquedaDFS;
 
 /**
  *

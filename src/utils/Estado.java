@@ -1,4 +1,4 @@
-package algoritmosia;
+package utils;
 
 import java.util.ArrayList;
 
@@ -24,4 +24,11 @@ public interface Estado
 
 	// comparar los datos del estado actual
 	public boolean igual(Estado s);
+        
+        public double costoCambioEstado(Estado e);
+       
+        public int getHeuristica();
+        
+        // formatear salida de estado
+        public void formatearEstado();
 }

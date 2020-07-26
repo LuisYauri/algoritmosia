@@ -1,8 +1,8 @@
-package algoritmosia;
+package algoritmos;
 
 
-import algoritmosia.Estado;
-import algoritmosia.NodoDeBusqueda;
+import utils.Estado;
+import utils.NodoDeBusqueda;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;

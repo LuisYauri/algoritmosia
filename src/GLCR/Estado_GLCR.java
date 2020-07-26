@@ -1,5 +1,5 @@
 package GLCR;
-import algoritmosia.Estado;
+import utils.Estado;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,6 +18,20 @@ public class Estado_GLCR implements Estado
 	private final Estado_GLCR.Pos[] META = new Estado_GLCR.Pos[]
 	{ Pos.E, Pos.E, Pos.E, Pos.E };
 
+        @Override
+        public double costoCambioEstado(Estado e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public int getHeuristica() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+    @Override
+    public void formatearEstado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 	/*
 	 * Todos los estados glcr se definen con un arreglo de 4 elementos del
