@@ -8,7 +8,7 @@ public class PruebaMisionerosCanibalesDFSLimitado {
         int[] a = { 3,3,1}; 
         //int[] a = { 2,4,3,1};
         System.out.println("\tMISIONERO | CANIBAL | BOTE");
-        BusquedaDFSLimitada.buscar(true, new EstadoMisioneroCanibal(a));
+        BusquedaDFSLimitada.buscar(true, new EstadoMisioneroCanibal(a), 11);
 
     }
 }   

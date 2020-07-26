@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
- * Define una busqueda DFS Limitada con Profundidad 3.
+ * Define una busqueda DFS Limitada con Profundidad 3 (nivel).
  */
 public class BusquedaDFSLimitada
 {
@@ -15,21 +15,21 @@ public class BusquedaDFSLimitada
      * @param ubicaciones
      *            - El estado inicial.
      */
-    public static void buscar(boolean d, Estado e)
+    public static void buscar(boolean d, Estado e, int nivel)
     {
         NodoDeBusqueda raiz = new NodoDeBusqueda(e);
         Stack<NodoDeBusqueda> pila = new Stack<NodoDeBusqueda>();
 
         pila.add(raiz);
 
-        realizarBusqueda(pila, d);
+        realizarBusqueda(pila, d, nivel);
     }
 
     /*
      * Método de ayuda para revisar si un NodoDeBusqueda ya fue evaluado.
      * Returns true si ya fue evaluado, false en caso contrario.
      */
-    private static boolean revisarRepetidosYProfundidad(NodoDeBusqueda nodo)
+    private static boolean revisarRepetidosYProfundidad(NodoDeBusqueda nodo, int nivel)
     {
         boolean resultado = false;
         NodoDeBusqueda nodoRevisado = nodo;
@@ -42,7 +42,7 @@ public class BusquedaDFSLimitada
             if (nodo.getPadre().getEstadoActual().igual(nodoRevisado.getEstadoActual())){
                 resultado = true;
             }
-            if (profundidad > 3)
+            if (profundidad > nivel)
                 resultado = true;            
             nodo = nodo.getPadre();
         }
@@ -53,7 +53,7 @@ public class BusquedaDFSLimitada
     /**
      * Realiza la Busqueda DFS usando pila como el espacio a buscar
      */
-    public static void realizarBusqueda(Stack<NodoDeBusqueda> pila, boolean d)
+    public static void realizarBusqueda(Stack<NodoDeBusqueda> pila, boolean d, int nivel)
     {
         int contadorBusqueda = 1; // contador para el número de iteraciones
 
@@ -61,7 +61,20 @@ public class BusquedaDFSLimitada
         {
             System.out.print("Sale de la pila: ");
             NodoDeBusqueda nodoTemp = (NodoDeBusqueda) pila.pop();
-            nodoTemp.getEstadoActual().mostrarEstado();            
+            
+            //#Mostrar Nodo Padre          
+            if (nodoTemp.getPadre() != null) {
+                System.out.print("Nodo Padre: ");
+                nodoTemp.getPadre().getEstadoActual().mostrarEstado();
+            } else {
+                System.out.println("Es nodo raíz");
+            }
+            
+            System.out.print("\tSale de la pila: ");
+            nodoTemp.getEstadoActual().mostrarEstado();
+            System.out.println();
+            
+            
             // si el nodoTemp no es el estado meta
             if (!nodoTemp.getEstadoActual().esMeta())
             {
@@ -82,7 +95,7 @@ public class BusquedaDFSLimitada
                         sucesoresTemp.get(i), nodoTemp.getCosto()
                             + sucesoresTemp.get(i).determinarCosto(), 0);
 
-                    if (!revisarRepetidosYProfundidad(nuevoNodo))
+                    if (!revisarRepetidosYProfundidad(nuevoNodo, nivel))
                     {
                             pila.add(nuevoNodo);
                     }
