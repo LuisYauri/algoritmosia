@@ -13,9 +13,9 @@ public class BusquedaDFS
      * @param ubicaciones
      *            - El estado inicial.
      */
-    public static void buscar(boolean d,  Estado estadoChange)
+    public static void buscar(boolean d,  Estado e)
     {
-        NodoDeBusqueda raiz = new NodoDeBusqueda(estadoChange);
+        NodoDeBusqueda raiz = new NodoDeBusqueda(e);
         Stack<NodoDeBusqueda> pila = new Stack<NodoDeBusqueda>();
         //primero se añade la raíz 
         pila.add(raiz);
@@ -65,7 +65,7 @@ public class BusquedaDFS
                 System.out.println("Es nodo raíz");
             }
             
-            System.out.print("Sale de la pila: ");
+            System.out.print("\tSale de la pila: ");
             nodoTemp.getEstadoActual().mostrarEstado();
             System.out.println();
             // si el nodoTemp no es el estado meta

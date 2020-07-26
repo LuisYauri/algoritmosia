@@ -21,8 +21,9 @@ public class BusquedaBFS {
      * izquierda, 0 si el bote esta a la izquierda o 1 si esta a derecha.
      * @param d true para mostrar nodos examinados
      */
-    public static void buscar(boolean d, Estado estadoChange) {
-        NodoDeBusqueda raiz = new NodoDeBusqueda(estadoChange);
+    public static void buscar(boolean d, Estado e) {
+        //NodoDeBusqueda raiz = new NodoDeBusqueda(new EstadoMisioneroCanibal(ubicaciones));
+        NodoDeBusqueda raiz = new NodoDeBusqueda(e);
         Queue<NodoDeBusqueda> cola = new LinkedList<NodoDeBusqueda>();
 
         cola.add(raiz);
@@ -57,26 +58,27 @@ public class BusquedaBFS {
      * @param cola - La cola NodoDeBusqueda a ser buscada.
      * @param d true para mostrar nodos examinados
      */
+    
+    
     public static void realizarBusqueda(Queue<NodoDeBusqueda> cola, boolean d) {
         int contBusqueda = 1; // contador para el número de iteraciones
 
         while (!cola.isEmpty()) // mientras la cola no este vacía
         {
-             NodoDeBusqueda nodoTemp = (NodoDeBusqueda) cola.poll();
-            //#Mostrar Nodo Padre          
+            
+            NodoDeBusqueda nodoTemp = (NodoDeBusqueda) cola.poll();
+            
             if (nodoTemp.getPadre() != null) {
                 System.out.print("Nodo Padre: ");
                 nodoTemp.getPadre().getEstadoActual().mostrarEstado();
             } else {
                 System.out.println("Es nodo raíz");
             }
-            
-            System.out.print("Sale de Cola: ");
+            System.out.print("\tSale de Cola: ");
             nodoTemp.getEstadoActual().mostrarEstado();
-            
             System.out.println();
             
-            if (!nodoTemp.getEstadoActual().esMeta()) // si nodoTemp no es una meta
+             if (!nodoTemp.getEstadoActual().esMeta()) // si nodoTemp no es una meta
             {
                 // generar sucesores inmediatos a nodoTemp
                 ArrayList<Estado> sucesoresTemp = nodoTemp.getEstadoActual().generarSucesores();
@@ -100,45 +102,39 @@ public class BusquedaBFS {
                 }
                 contBusqueda++;
             } 
-            
-
-           
-            
             // El estado meta ha sido encontrado. Mostrar el camino para llegar
             // a este
+            else 
+            {
+                // Use una pila para rastrear el camino desde el estado inicial
+                // hasta el estado meta.
+                Stack<NodoDeBusqueda> caminoSolucion = new Stack<NodoDeBusqueda>();
+                caminoSolucion.push(nodoTemp);
+                nodoTemp = nodoTemp.getPadre();
 
-            //#Comentar el bloque else 
-//            else 
-//            {
-//                // Use una pila para rastrear el camino desde el estado inicial
-//                // hasta el estado meta.
-//                Stack<NodoDeBusqueda> caminoSolucion = new Stack<NodoDeBusqueda>();
-//                caminoSolucion.push(nodoTemp);
-//                nodoTemp = nodoTemp.getPadre();
-//
-//                while (nodoTemp.getPadre() != null) {
-//                    caminoSolucion.push(nodoTemp);
-//                    nodoTemp = nodoTemp.getPadre();
-//                }
-//                caminoSolucion.push(nodoTemp);
-//
-//                // El tamaño de la pila antes de vaciarla.
-//                int iteraciones = caminoSolucion.size();
-//
-//                for (int i = 0; i < iteraciones; i++) {
-//                    nodoTemp = caminoSolucion.pop();
-//                    nodoTemp.getEstadoActual().mostrarEstado();
-//                    System.out.println();
-//                    System.out.println();
-//                }
-//                System.out.println("El costo fue: " + nodoTemp.getCosto());
-//                if (d) {
-//                    System.out.println("Número de nodos examinados: "
-//                            + contBusqueda);
-//                }
-//
-//                System.exit(0);
-//            }
+                while (nodoTemp.getPadre() != null) {
+                    caminoSolucion.push(nodoTemp);
+                    nodoTemp = nodoTemp.getPadre();
+                }
+                caminoSolucion.push(nodoTemp);
+
+                // El tamaño de la pila antes de vaciarla.
+                int iteraciones = caminoSolucion.size();
+
+                for (int i = 0; i < iteraciones; i++) {
+                    nodoTemp = caminoSolucion.pop();
+                    nodoTemp.getEstadoActual().mostrarEstado();
+                    System.out.println();
+                    System.out.println();
+                }
+                System.out.println("El costo fue: " + nodoTemp.getCosto());
+                if (d) {
+                    System.out.println("Número de nodos examinados: "
+                            + contBusqueda);
+                }
+
+                System.exit(0);
+            }
         }
 
         // Esto no debería ocurrir.
