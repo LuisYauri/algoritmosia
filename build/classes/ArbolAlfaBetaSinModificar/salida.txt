@@ -1,0 +1,36 @@
+Expandiendo Nodo Max A0: Alfa = -Infinity, Beta: Infinity
+Expandiendo Nodo Min B0: Alfa = -Infinity, Beta: Infinity
+Expandiendo Nodo Max C0: Alfa = -Infinity, Beta: Infinity
+Expandiendo Nodo Min D0: Alfa = -Infinity, Beta: Infinity
+Expandiendo Nodo Min D1: Alfa = -2.0, Beta: Infinity
+Expandiendo Nodo Min D2: Alfa = -2.0, Beta: Infinity
+Expandiendo Nodo Max C2: Alfa = -Infinity, Beta: -2.0
+Expandiendo Nodo Min D3: Alfa = -Infinity, Beta: -2.0
+Saltando expansión de Nodo D4 ya que este no puede hacer alfa más alto
+Expandiendo Nodo Min B1: Alfa = -2.0, Beta: Infinity
+Expandiendo Nodo Max C3: Alfa = -2.0, Beta: Infinity
+Expandiendo Nodo Min D5: Alfa = -2.0, Beta: Infinity
+Expandiendo Nodo Max C4: Alfa = -2.0, Beta: 2.0
+Expandiendo Nodo Min D7: Alfa = -2.0, Beta: 2.0
+Saltando expansión de Nodo D8 ya que este no puede hacer alfa más alto
+Saltando expansión de Nodo D9 ya que este no puede hacer alfa más alto
+Expansiones completadas
+
+Valores Alfa Beta finales para cada nodo:
+Nodo A0 - Alfa: 2.0, Beta: Infinity
+Nodo B0 - Alfa: -Infinity, Beta: -2.0
+Nodo B1 - Alfa: -2.0, Beta: 2.0
+Nodo C0 - Alfa: -2.0, Beta: Infinity
+Nodo C2 - Alfa: 4.0, Beta: -2.0
+Nodo C3 - Alfa: 2.0, Beta: Infinity
+Nodo C4 - Alfa: 3.0, Beta: 2.0
+Nodo D0 - Alfa: -Infinity, Beta: -2.0
+Nodo D1 - Alfa: -2.0, Beta: -6.0
+Nodo D2 - Alfa: -2.0, Beta: -5.0
+Nodo D3 - Alfa: -Infinity, Beta: -2.0
+Nodo D5 - Alfa: -2.0, Beta: 2.0
+Nodo D7 - Alfa: -2.0, Beta: 2.0
+
+Valor de Nodo Max A = 2
+
+Movida que el Nodo Max A debería hacer es B1
